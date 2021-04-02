@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
          /* Grupo de Rotas*/
 
-         Route::middleware([])->group(function(){ //aplica autenticação no grupo de rotas
+         Route::middleware(['auth'])->group(function(){ //aplica autenticação no grupo de rotas
 
             Route::prefix('admin')->group(function(){ //adiciona o prefixo /admin nas rotas do grupo
         
