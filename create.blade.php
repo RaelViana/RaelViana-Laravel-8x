@@ -7,13 +7,32 @@
 @section('content')
     <h1>Cadastrar Novo Produto</h1>    
 
-    <!-- Cria um formulario   -->
-    <form action="{{ route('products.store') }}" method="post">
+    @include('admin.alerts.alerts')
+
+    <!-- Cria um formulario   --> 
+    <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data" class="form">    
         
-        @csrf          <!-- Cria um token de Validação de requisição   -->
+        @csrf          
+        <div class="form-group">
+            <input class="form-control" type="text" name="name" placeholder="Nome" value="{{ old('name') }}">  <!-- O 'old' mantém o campo do formulário preenchido -->
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="text" name="price" placeholder="Preço" value="{{ old('price') }}">  <!-- O 'old' mantém o campo do formulário preenchido -->
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="text" name="description" placeholder="Descrição:" value="{{ old('description') }}">
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="file" name="image">          <!-- Cria um input de inserção de arquivos  -->
+        </div>
         
-        <input type="text" name="Nome" placeholder="Name">
-        <input type="text" name="Descrição" placeholder="Description">
-        <button type="submit">Enviar</button>       
+        <div class="form-group">
+            <button class="btn btn-success" type="submit">Enviar</button>     
+        </div>
+        
+         
     </form>
 @endsection
