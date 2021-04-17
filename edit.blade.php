@@ -1,21 +1,18 @@
 @extends('admin.layouts.app') <!-- Caminho do path de onde será extendido  -->
 
-@section('title','Editar Produto')
+@section('title',"Editar Produto {$product->name}")
     
 
 
 @section('content')
-    <h1>Editar Produto {{ $id }}</h1>    
+    <h1>Editar Produto {{ $product->name }}</h1>    
 
     <!-- Cria um formulario   -->
-    <form action="{{ route('products.update', $id) }}" method="post"> 
+    <form action="{{ route('products.update', $product->id) }}" method="post"> 
 
         @method('PUT') <!-- Cria uma requisição tipo PUT   -->
         
-        @csrf          <!-- Cria um token de Validação de requisição   -->
-        
-        <input type="text" name="Nome" placeholder="Name">
-        <input type="text" name="Descrição" placeholder="Description">
-        <button type="submit">Enviar</button>       
+        @include('admin.pages.products._partials.form')  
+
     </form>
 @endsection        
