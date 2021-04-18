@@ -25,10 +25,13 @@ class StoreUpdateProductRequest extends FormRequest
      //Array de Validações
     public function rules()
     {
+        $id = $this->segment(2);  //adiciona uma exceção ao editar name
+
         return [
-            'name' => 'required|min:3|max:255', // nome com valor minimo e máximo de caracteres
-            'description' => 'nullable|min:3|max:1000', // nome com valor minimo e máximo de caracteres
-            'photo' => 'required|image',
+            'name' => "required|min:3|max:255|unique:products,name,{$id},id", // unique define um valor unico para cadastro
+            'description' => 'required|min:3|max:10000', // nome com valor minimo e máximo de caracteres
+            'price'=> 'required',
+            'photo' => 'nullable|image',
         ];
     }
 
