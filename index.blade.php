@@ -11,6 +11,12 @@
 
     <hr>
 
+    <form class="form form-inline" action="{{ route('products.search') }}" method="post">
+        @csrf
+        <input type="text" name="filter" placeholder="Filtrar" class="form-control" value="{{ $filters['filter'] ?? ''}}">
+        <button type="submit" class="btn btn-info">Pesquisar</button>
+    </form>
+
     <table class="table table-striped">
        
         <thead>
@@ -35,7 +41,13 @@
    
     </table>
 
-    {!! $products->links() !!} 
+    @if (isset($filters))
+        {!! $products->appends($filters)->links() !!}             
+    @else
+        {!! $products->links() !!} 
+    @endif
+
+    
    
 
 @endsection    
